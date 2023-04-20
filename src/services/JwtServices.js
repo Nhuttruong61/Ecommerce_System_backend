@@ -35,12 +35,11 @@ const refreshTokenJwtService = async (token) => {
         if (err) {
           console.log("err", err);
           resolve({
-            status: "ERROR",
+            status: "ERR",
             message: "The authemtication",
           });
         }
         console.log(user);
-        const { payload } = user;
         const access_token = await genneralAccessToken({
             id: user?.id,
             isAdmin: user?.isAdmin
