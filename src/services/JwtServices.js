@@ -39,7 +39,7 @@ const refreshTokenJwtService = async (token) => {
             message: "The authemtication",
           });
         }
-        console.log(user);
+        // console.log(user);
         const access_token = await genneralAccessToken({
             id: user?.id,
             isAdmin: user?.isAdmin

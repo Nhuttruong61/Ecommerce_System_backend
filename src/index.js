@@ -11,7 +11,9 @@ const app = express()
 const port = process.env.PORT || 3001
 
 app.use(cors())
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json());
 app.use(cookieParser())
 routes(app);
 
@@ -23,6 +25,7 @@ mongoose.connect(`${process.env.MONGO_DB}`)
         console.log(err)
     })
 
+// console.log('process.env.CLIENT_ID = ' + process.env.CLIENT_ID)
 app.listen(port, () => {
     console.log('Server is running in port: ', + port)
 })

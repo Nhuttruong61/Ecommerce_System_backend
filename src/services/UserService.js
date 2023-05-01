@@ -62,7 +62,7 @@ const loginUser = (userLogin) => {
         id: checkUser.id,
         isAdmin: checkUser.isAdmin,
       });
-      console.log(refresh_token);
+      // console.log(refresh_token);
       resolve({
         status: "OK",
         message: "Success",
@@ -80,7 +80,7 @@ const updateUser = (id, data) => {
       const checkUser = await User.findOne({
         _id: id,
       });
-      console.log("checkUser", checkUser);
+      // console.log("checkUser", checkUser);
       if (checkUser === null) {
         resolve({
           status: "ERR",
@@ -105,7 +105,7 @@ const deleteUser = (id) => {
       const checkUser = await User.findOne({
         _id: id,
       });
-      console.log("checkUser", checkUser);
+      // console.log("checkUser", checkUser);
       if (checkUser === null) {
         resolve({
           status: "ERR",
@@ -162,6 +162,20 @@ const getDetailsUser = (id) => {
   });
 };
 
+const deleteManyUser = (ids) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+
+            await User.deleteMany({ _id: ids })
+            resolve({
+                status: 'OK',
+                message: 'Delete user success',
+            })
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
 
 
 module.exports = {
@@ -171,5 +185,5 @@ module.exports = {
   deleteUser,
   getAllUser,
   getDetailsUser,
-  
+  deleteManyUser,
 };
