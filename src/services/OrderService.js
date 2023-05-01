@@ -156,7 +156,7 @@ const cancelOrderDetails = (id, data) => {
           },
           { new: true }
         );
-        console.log("productData", productData);
+        // console.log("productData", productData);
         if (productData) {
           order = await Order.findByIdAndDelete(id);
           if (order === null) {

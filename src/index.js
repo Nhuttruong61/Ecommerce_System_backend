@@ -25,7 +25,6 @@ mongoose.connect(`${process.env.MONGO_DB}`)
         console.log(err)
     })
 
-// console.log('process.env.CLIENT_ID = ' + process.env.CLIENT_ID)
 app.listen(port, () => {
     console.log('Server is running in port: ', + port)
 })
