@@ -102,6 +102,42 @@ const getAllOrder = async (req, res) => {
     });
   }
 };
+const deleteOrder = async (req, res) => {
+  try {
+    const orderId = req.params.id;
+    if (!orderId) {
+      return res.status(400).json({
+        status: "ERR",
+        message: "The orderId is required",
+      });
+    }
+    const response = await OrderService.deleteOrder(orderId);
+    return res.status(200).json(response);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      message: "Server Error",
+    });
+  }
+};
+const updateOrderStatus = async (req, res) => {
+  try {
+    const { orderId, status } = req.body;
+    if (!orderId || !status) {
+      return res.status(400).json({
+        status: "ERR",
+        message: "The orderId and status are required",
+      });
+    }
+    const response = await OrderService.updateOrderStatus(orderId, status);
+    return res.status(200).json(response);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      message: "Server Error",
+    });
+  }
+};
 
 module.exports = {
   createOrder,
@@ -109,4 +145,6 @@ module.exports = {
   getAllOrderDetails,
   cancelOrderDetails,
   getAllOrder,
+  deleteOrder,
+  updateOrderStatus
 };

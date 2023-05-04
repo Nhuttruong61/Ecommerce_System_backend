@@ -86,7 +86,6 @@ const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
     const token = req.headers
-    // console.log(token)
     if (!userId) {
       return res.status(200).json({
         status: "ERR",
